@@ -107,6 +107,14 @@ app.get('/api/persons/:id', (request, response) => {
     }
 })
 
+app.put('/api/persons/:id', (request, response) => {
+    const  body = request.body
+    const id = request.params.id
+    const personToUpdate = persons.findIndex((person) => person.id === id)
+    persons[personToUpdate] = body
+    response.json(persons[personToUpdate])
+})
+
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
     persons = persons.filter((person) => person.id != id)
